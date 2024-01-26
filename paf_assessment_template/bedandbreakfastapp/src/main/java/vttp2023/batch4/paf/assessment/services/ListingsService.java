@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import vttp2023.batch4.paf.assessment.models.Accommodation;
 import vttp2023.batch4.paf.assessment.models.AccommodationSummary;
@@ -63,12 +62,8 @@ public class ListingsService {
 	// IMPORTANT: DO NOT MODIFY THE SIGNATURE OF THIS METHOD.
 	// You may only add annotations and throw exceptions to this method
 	public void createBooking(Bookings booking){
-		System.out.println("START");
 		// check if user exists
-		System.out.println(booking.getEmail());
 		Optional<User> opt = bookingRepo.userExists(booking.getEmail());
-		System.out.println("END");
-		System.out.println(opt.get().toString());
 
 		// user does not exist 
 		if (opt.isEmpty()){
