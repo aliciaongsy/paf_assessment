@@ -44,28 +44,28 @@ public class BookingsRepository {
 	// TODO: Task 6
 	// IMPORTANT: DO NOT MODIFY THE SIGNATURE OF THIS METHOD.
 	// You may only add throw exceptions to this method
-	public void newUser(User user) {
+	public void newUser(User user) throws Exception {
 		// creating new user after checking that user does not exist
 
 		int updateCount = template.update(SQL_INSERT_NEW_USER, user.email(), user.name());
 		System.out.println(updateCount);
 
-		// if (updateCount == 0){
-		// throw new Exception("Error: User not created");
-		// }
+		if (updateCount == 0){
+		throw new Exception("Error: User not created");
+		}
 	}
 
 	// TODO: Task 6
 	// IMPORTANT: DO NOT MODIFY THE SIGNATURE OF THIS METHOD.
 	// You may only add throw exceptions to this method
-	public void newBookings(Bookings bookings) {
+	public void newBookings(Bookings bookings) throws Exception {
 
 		int updateCount = template.update(SQL_CREATE_NEW_BOOKING, bookings.getBookingId(), bookings.getListingId(),
 				bookings.getDuration(), bookings.getEmail());
 		System.out.println(updateCount);
 
-		// if (updateCount == 0){
-		// throw new Exception("Error: Booking not created");
-		// }
+		if (updateCount == 0){
+		throw new Exception("Error: Booking not created");
+		}
 	}
 }
