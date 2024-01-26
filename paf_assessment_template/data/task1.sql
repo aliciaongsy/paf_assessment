@@ -32,18 +32,18 @@ create table reviews (
     primary key(id)
 );
 
-grant all privileges on bedandbreakfast.* to fred@'%';
-flush privileges;
+-- grant all privileges on bedandbreakfast.* to fred@'%';
+-- flush privileges;
 
-SHOW GLOBAL VARIABLES LIKE 'local_infile';
-SET GLOBAL local_infile = 'ON';
+-- SHOW GLOBAL VARIABLES LIKE 'local_infile';
+-- SET GLOBAL local_infile = 'ON';
 
 load data local infile '/Users/aliciaong/VTTP/assessment/paf_assessment_template/data/users.csv' into table users fields terminated by ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES;
 
--- insert into users(email, name) 
--- values (fred@gmail.com, Fred Flintstone),
--- (barney@gmail.com, Barney Rubble),
--- (fry@planetexpress.com, Philip J Fry),
--- (hlmer@gmail.com, Homer Simpson);
+insert into users(email, name) 
+values ("fred@gmail.com", "Fred Flintstone"),
+("barney@gmail.com", "Barney Rubble"),
+("fry@planetexpress.com", "Philip J Fry"),
+("hlmer@gmail.com", "Homer Simpson");
