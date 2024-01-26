@@ -1,0 +1,42 @@
+Write your Task 2 answers in this file
+task2.1
+mongoimport -hlocalhost --port=27017 -dbedandbreakfast -clistings_and_reviews --type=json listings.json
+
+task 2.2
+db.listings_and_reviews.find(
+    { "address.country": {
+		$regex: "Australia",
+		$options: "i"
+	}
+}).forEach(function(doc){
+   db.listings.insert(doc);
+});
+
+task2.3
+db.listings.aggregate([
+{
+    $unwind: "$reviews"
+},
+{
+    $group: {
+        _id: "$reviews._id",
+        date: {$first: "$reviews.date"},
+        listing_id: {$first: "$reviews.listing_id"},
+        reviewer_name: {$first: "$reviews.reviewer_name"},
+        comments: {$first: "$reviews.comments"}
+        
+    }
+}
+]);
+
+task2.4 
+db.listings.updateMany(
+  {},
+  {
+    $unset: { reviews: "" },
+  }
+);
+
+task2.5
+mongoexport --db bedandbreakfast --collection reviews --fields date,listing_id,reviewer_name,comments --type=csv --out=reviews.csv
+
